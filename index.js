@@ -1,7 +1,6 @@
 'use strict';
 
-var blas1 = require('ndarray-blas-level1'),
-    pool = require('ndarray-scratch');
+var blas1 = require('ndarray-blas-level1');
 
 exports.gemv = function(alpha, A, x, beta, y) {
   var dot = blas1.dot;
