@@ -25,3 +25,12 @@ exports.trsv = function(A, x) {
     x.set(i, (x.get(i) - dot(A.pick(i,null).lo(i+1), x.lo(i+1))) / A.get(i,i) );
   }
 };
+
+exports.trsv_lower = function(A, x) {
+  var dot = blas1.dot;
+  var n = A.shape[1];
+  x.set( 0, x.get(0)/A.get(0,0) );
+  for(var i=1; i<n; i++) {
+    x.set(i, (x.get(i) - dot(A.pick(i,null).hi(i), x.hi(i))) / A.get(i,i) );
+  }
+};
