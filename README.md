@@ -17,14 +17,8 @@ Calculate `y <- alpha*A*x + beta*y`
 ### `trmv( A, x, isLower )`
 Calculate `x <- A*x` for the upper triangular matrix A. Data below the diagonal is ignored. If `isLower` is true, uses the lower triangular portion of A instead.
 
-### `trmv_lower( A, x )`
-Calculate `x <- A*x` for the lower triangular matrix A. Data above the diagonal is ignored.
-
-### `trsv( A, x )`
-Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagonal is ignored.
-
-### `trsv_lower( A, x )`
-Calculate `x <- A^-1 x` for the lower triangular matrix A. Data above the diagonal is ignored.
+### `trsv( A, x, isLower )`
+Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagonal is ignored.  If `isLower` is true, uses the lower triangular portion of A instead.
 
 ## Credits
 (c) 2015 Ricky Reusser. MIT License
