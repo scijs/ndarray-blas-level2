@@ -1,6 +1,6 @@
 # ndarray-blas-level2
 
-[![Build Status](https://travis-ci.org/scijs/ndarray-blas-level2.svg?branch=master)](https://travis-ci.org/scijs/ndarray-blas-level2) [![npm version](https://badge.fury.io/js/ndarray-blas-level2.svg)](http://badge.fury.io/js/ndarray-blas-level2)
+[![Build Status](https://travis-ci.org/scijs/ndarray-blas-level2.svg?branch=master)](https://travis-ci.org/scijs/ndarray-blas-level2) [![npm version](https://badge.fury.io/js/ndarray-blas-level2.svg)](http://badge.fury.io/js/ndarray-blas-level2) [![Dependency Status](https://david-dm.org/scijs/ndarray-blas-level2.svg)](https://david-dm.org/scijs/ndarray-blas-level2)
 
 BLAS Level 2 operations for [ndarrays](https://github.com/scijs/ndarray)
 
