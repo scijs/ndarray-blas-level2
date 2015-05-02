@@ -44,6 +44,12 @@ describe("BLAS Level 2",function() {
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
+  it('trmv_lower',function() {
+    blas2.trmv_lower( A, x );
+    assert.ndCloseTo( x, ndarray([-4,1]), 1e-8 );
+    assert.ndCloseTo( A0, A, 1e-8 );
+  });
+
   it('trsv',function() {
     blas2.trsv( A, x );
     assert.ndCloseTo( x, ndarray([-8.66666666666666667,  2.3333333333333333]), 1e-8 );
