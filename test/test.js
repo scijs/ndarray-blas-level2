@@ -44,8 +44,8 @@ describe("BLAS Level 2",function() {
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
-  it('trmv_lower',function() {
-    blas2.trmv_lower( A, x );
+  it('trmv lower',function() {
+    blas2.trmv( A, x, true );
     assert.ndCloseTo( x, ndarray([-4,1]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });
@@ -56,8 +56,8 @@ describe("BLAS Level 2",function() {
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
-  it('trsv_lower',function() {
-    blas2.trsv_lower( A, x );
+  it('trsv lower',function() {
+    blas2.trsv( A, x, true );
     assert.ndCloseTo( x, ndarray([-4,  9]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });

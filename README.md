@@ -14,8 +14,8 @@ Note: It's possible to accomplish the lower triangular functions with the upper 
 ### `gemv( alpha, A, x, beta, y )`
 Calculate `y <- alpha*A*x + beta*y`
 
-### `trmv( A, x )`
-Calculate `x <- A*x` for the upper triangular matrix A. Data below the diagonal is ignored.
+### `trmv( A, x, isLower )`
+Calculate `x <- A*x` for the upper triangular matrix A. Data below the diagonal is ignored. If `isLower` is true, uses the lower triangular portion of A instead.
 
 ### `trmv_lower( A, x )`
 Calculate `x <- A*x` for the lower triangular matrix A. Data above the diagonal is ignored.
@@ -25,8 +25,6 @@ Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagon
 
 ### `trsv_lower( A, x )`
 Calculate `x <- A^-1 x` for the lower triangular matrix A. Data above the diagonal is ignored.
-
-
 
 ## Credits
 (c) 2015 Ricky Reusser. MIT License
