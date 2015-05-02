@@ -32,32 +32,32 @@ describe("BLAS Level 2",function() {
   });
 
   it('gemv',function() {
-    blas2.gemv( -4, A, x, 2, y );
+    assert( blas2.gemv( -4, A, x, 2, y ) );
     assert.ndCloseTo( ndarray(new Float64Array([-34,-8])), y, 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
     assert.ndCloseTo( x0, x, 1e-8 );
   });
 
   it('trmv',function() {
-    blas2.trmv( A, x );
+    assert( blas2.trmv( A, x ) );
     assert.ndCloseTo( x, ndarray([10,21]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
   it('trmv lower',function() {
-    blas2.trmv( A, x, true );
+    assert( blas2.trmv( A, x, true ) );
     assert.ndCloseTo( x, ndarray([-4,1]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
   it('trsv',function() {
-    blas2.trsv( A, x );
+    assert( blas2.trsv( A, x ) );
     assert.ndCloseTo( x, ndarray([-8.66666666666666667,  2.3333333333333333]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });
 
   it('trsv lower',function() {
-    blas2.trsv( A, x, true );
+    assert( blas2.trsv( A, x, true ) );
     assert.ndCloseTo( x, ndarray([-4,  9]), 1e-8 );
     assert.ndCloseTo( A0, A, 1e-8 );
   });

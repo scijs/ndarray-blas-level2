@@ -7,6 +7,7 @@ exports.gemv = function(alpha, A, x, beta, y) {
   for(var i=A.shape[1]-1; i>=0; i--) {
     y.set(i, y.get(i)*beta + alpha * dot( A.pick(i,null), x));
   }
+  return true;
 };
 
 exports.gbmv = function() {
@@ -44,7 +45,7 @@ exports.trmv = function(A, x, isLower) {
 
 exports.trmv_lower = function(A,x) {
   console.warn('trmv_lower is deprected. Please use the \'isLower\' flag with trmv');
-  exports.trmv(A,x,true);
+  return exports.trmv(A,x,true);
 }
 
 exports.tbmv = function() {
@@ -66,12 +67,13 @@ exports.trsv = function(A, x, isLower) {
       x.set(i, (x.get(i) - dot(A.pick(i,null).lo(i+1), x.lo(i+1))) / A.get(i,i) );
     }
   }
+  return true;
 };
 
 // Solve Ax=b where A is lower triangular
 exports.trsv_lower = function(A, x) {
   console.warn('trsv_lower is deprected. Please use the \'isLower\' flag with trsv');
-  exports.trsv(A,x,true);
+  return exports.trsv(A,x,true);
 };
 
 exports.tbsv = function() {
