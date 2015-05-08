@@ -4,6 +4,7 @@
 
 BLAS Level 2 operations for [ndarrays](https://github.com/scijs/ndarray)
 
+**Warning: This is more complicated than I initially appreciated, so this package will soon get broken up into separate modules for each blas function.**
 
 ## Usage
 
