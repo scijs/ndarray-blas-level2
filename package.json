@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "lint": "jshint **.js"
+    "lint": "semistandard"
   },
   "keywords": [
     "blas",
@@ -34,5 +34,8 @@
     "transform": [
       "cwise"
     ]
+  },
+  "semistandard": {
+    "globals": [ "describe", "it", "beforeEach" ]
   }
 }
