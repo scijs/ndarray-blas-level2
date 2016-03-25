@@ -12,14 +12,17 @@ This library implements the basic matrix-vector operations of the Level 2 Basic 
 
 Note: It's possible to accomplish the lower triangular functions with the upper triangular version plus flipping and unflipping dimensions, but that's a little convoluted. Instead, the lower triangular versions are suffixed with \_lower just to keep it really simple.
 
-### `gemv( alpha, A, x, beta, y )`
+### `gemv(alpha, A, x, beta, y)`
 Calculate `y <- alpha*A*x + beta*y`
 
-### `trmv( A, x, isLower )`
+### `trmv(A, x, isLower)`
 Calculate `x <- A*x` for the upper triangular matrix A. Data below the diagonal is ignored. If `isLower` is true, uses the lower triangular portion of A instead.
 
-### `trsv( A, x, isLower )`
+### `trsv(A, x, isLower)`
 Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagonal is ignored.  If `isLower` is true, uses the lower triangular portion of A instead.
+
+### `gbmv(A, kl, ku, x, y, alpha, beta)`
+Calculates `y <- alpha*A*x + beta*y` for banded matrices. `kl` is the number of subdiagonals and `ku` are the number of super diagonals. `alpha` defaults to 1.0 and `beta` defaults to 0.0 if not specified.
 
 ## Credits
 (c) 2015 Ricky Reusser. MIT License
