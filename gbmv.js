@@ -8,22 +8,22 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
   var idx = 0;
   var m = A.shape[0];
   var n = A.shape[1];
-  var Kl = Math.min(kl, m-1);
-  var Ku = Math.min(ku, n-1);
+  var Kl = Math.min(kl, m - 1);
+  var Ku = Math.min(ku, n - 1);
 
   var alpha0 = alpha || 1;
   var beta0 = beta || 0;
-  
+
   while (r <= Kl) {
     sum = 0;
-    var max = Math.min(r + Ku, n-1)
+    var max = Math.min(r + Ku, n - 1);
     for (c = 0; c <= max; c++) {
       sum += A.get(r, c) * x.get(c);
     }
     y.set(r, sum * alpha0 + beta0 * y.get(r));
     r++;
   }
-  if(r < m) {
+  if (r < m) {
     i = 0;
     while (r + Ku < n) {
       sum = 0;
@@ -39,7 +39,7 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
       }
     }
   }
-  if(r < m) {
+  if (r < m) {
     i++;
     while (r - Kl < n) {
       sum = 0;
