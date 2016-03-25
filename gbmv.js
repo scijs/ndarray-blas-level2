@@ -11,7 +11,6 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
   var Kl = Math.min(kl, m-1);
   var Ku = Math.min(ku, n-1);
 
-  var transpose = !!(trans);
   var alpha0 = alpha || 1;
   var beta0 = beta || 0;
   
@@ -55,4 +54,5 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
       }
     }
   }
+  return true;
 };
