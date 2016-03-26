@@ -21,5 +21,9 @@ Calculate `x <- A*x` for the upper triangular matrix A. Data below the diagonal 
 ### `trsv( A, x, isLower )`
 Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagonal is ignored.  If `isLower` is true, uses the lower triangular portion of A instead.
 
+
+### `symv(A, x, y, fromLower, alpha, beta)`
+Calculates `y <- alpha*A*x + beta*y` for symmetric matrices. If `fromLower = true`, the function uses the lower triangular part of the matrix; for `false` it uses the upper triangular part. `alpha` defaults to 1.0 and `beta` defaults to 0.0 if not specified.
+
 ## Credits
 (c) 2015 Ricky Reusser. MIT License

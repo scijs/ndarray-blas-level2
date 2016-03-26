@@ -16,6 +16,29 @@ assert.ndCloseTo = function (a, b, tol) {
   assert(err < tol, 'Expected error ' + err + ' to be less than tolerance ' + tol + '.');
 };
 
+var createSymmetricMatrix = function (n) {
+  var elementMax = 100;
+  var n2 = n * n;
+  var A = ndarray(new Float64Array(n2), [n, n]);
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < n; ++j) {
+      var e = Math.random() * elementMax;
+      A.set(i, j, e);
+      A.set(j, i, e);
+    }
+  }
+  return A;
+};
+
+var createVector = function (n) {
+  var elementMax = 100;
+  var x = ndarray(new Float64Array(n));
+  for (var i = 0; i < n; ++i) {
+    x.set(i, Math.random() * elementMax);
+  }
+  return x;
+};
+
 describe('BLAS Level 2', function () {
   var A;
   var A0;
@@ -64,5 +87,15 @@ describe('BLAS Level 2', function () {
     assert(blas2.trsv(A, x, true));
     assert.ndCloseTo(x, ndarray([-4, 9]), 1e-8);
     assert.ndCloseTo(A0, A, 1e-8);
+  });
+
+  it('symv', function () {
+    var S = createSymmetricMatrix(10);
+    var v = createVector(10);
+    var q = ndarray(new Float64Array(10));
+    var q0 = ndarray(new Float64Array(10));
+    blas2.symv(S, v, q);
+    blas2.gemv(1.0, S, v, 0.0, q0);
+    assert.ndCloseTo(q, q0, 1e-8);
   });
 });
