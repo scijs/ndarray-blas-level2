@@ -11,8 +11,8 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
   var Kl = Math.min(kl, m - 1);
   var Ku = Math.min(ku, n - 1);
 
-  var alpha0 = alpha || 1;
-  var beta0 = beta || 0;
+  var alpha0 = alpha === undefined ? 1 : alpha;
+  var beta0 = beta === undefined ? 0 : beta;
 
   while (r <= Kl) {
     sum = 0;
