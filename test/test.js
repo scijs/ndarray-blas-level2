@@ -8,6 +8,7 @@ var ops = require('ndarray-ops');
 var blas2 = require('../index.js');
 var blas1 = require('ndarray-blas-level1');
 var RandMatGen = require('./rand-matrix-gen.js');
+var show = require('ndarray-show');
 
 var NUM_TESTS = 2000;
 var TEST_TOLERANCE = 1e-8;
@@ -72,7 +73,7 @@ describe('BLAS Level 2', function () {
       blas1.copy(xn, x);
 
       assert(blas2.trmv(B, x, false));
-      assert(blas2.gemv(1.0, B, xn, 0.0, x0));
+      assert(blas2.gemv(1, B, xn, 0, x0));
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
     }
   });
@@ -85,7 +86,7 @@ describe('BLAS Level 2', function () {
       blas1.copy(xn, x);
 
       assert(blas2.trmv(B, x, true));
-      assert(blas2.gemv(1.0, B, xn, 0.0, x0));
+      assert(blas2.gemv(1, B, xn, 0, x0));
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
     }
   });
@@ -96,7 +97,7 @@ describe('BLAS Level 2', function () {
       matGen.makeTriangularMatrix(n, n, false, B);
       matGen.makeGeneralMatrix(1, n, x);
 
-      assert(blas2.gemv(1.0, B, x, 0.0, x0));
+      assert(blas2.gemv(1, B, x, 0, x0));
       assert(blas2.trsv(B, x0, false)); // value of x
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
     }
@@ -108,23 +109,16 @@ describe('BLAS Level 2', function () {
       matGen.makeTriangularMatrix(n, n, true, B);
       matGen.makeGeneralMatrix(1, n, x);
 
-      assert(blas2.gemv(1.0, B, x, 0.0, x0));
+      assert(blas2.gemv(1, B, x, 0, x0));
       assert(blas2.trsv(B, x0, true)); // value of x
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
     }
   });
 
   it('gbmv', function () {
-    // gbmv: banded matrix-vector product
-    // matrix; B
-    // kl: 3
-    // ku: 1
-    // x (input): z
-    // y (output): w
-    // alpha:
-    //
-    blas2.gbmv(B, 3, 1, z, w);
-    blas2.gemv(1.0, B, z, 0.0, w0);
-    assert.ndCloseTo(w, w0, 1e-8);
+    matGen.makeBandedMatrix(n, n, 3, 1, B);
+    blas2.gbmv(B, 3, 1, x0, x);
+    blas2.gemv(1, B, x0, 0, xn);
+    assert.ndCloseTo(x, xn, 1e-8);
   });
 });

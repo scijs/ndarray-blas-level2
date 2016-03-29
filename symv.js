@@ -6,8 +6,8 @@ exports.symv = function (A, x, y, fromLower, alpha, beta) {
   var n = A.shape[0];
 
   var lower = fromLower || true;
-  var alpha0 = alpha || 1.0;
-  var beta0 = beta || 0.0;
+  var alpha0 = alpha === undefined ? 1 : alpha;
+  var beta0 = beta === undefined ? 0 : beta;
 
   var i = 0;
   var j = 0;
@@ -15,13 +15,13 @@ exports.symv = function (A, x, y, fromLower, alpha, beta) {
   var t2 = 0;
 
   if (beta0 === 0) {
-    for(i = 0; i < y.shape[0]; ++i) {
+    for (i = 0; i < y.shape[0]; ++i) {
       y.set(i, 0);
     }
   } else if (beta0 !== 1) {
-    blas1.scal(beta0, y);  
+    blas1.scal(beta0, y);
   }
-  if(alpha0 === 0) {
+  if (alpha0 === 0) {
     return true;
   } else if (alpha0 === 1) {
     if (lower) {
@@ -71,6 +71,5 @@ exports.symv = function (A, x, y, fromLower, alpha, beta) {
     }
   }
 
-  
   return true;
 };

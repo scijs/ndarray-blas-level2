@@ -2,7 +2,7 @@
 
 var MatrixGenerator = require('./rand-matrix-gen.js');
 var printer = require('./debug-printer.js');
-var show = require('ndarray-show')
+var show = require('ndarray-show');
 
 describe('Matrix Creation Test', function () {
   it('matrix creation', function () {

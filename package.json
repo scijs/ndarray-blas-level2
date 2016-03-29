@@ -10,7 +10,7 @@
     "url": "git://github.com/scijs/ndarray-blas-level2.git"
   },
   "scripts": {
-    "test": "mocha test/test.js",
+    "test": "semistandard && mocha test/test.js",
     "lint": "semistandard"
   },
   "keywords": [
@@ -28,7 +28,8 @@
     "ndarray-band": "^1.0.14",
     "ndarray-fill": "^1.0.1",
     "ndarray-ops": "^1.2.2",
-    "ndarray-scratch": "^1.1.1"
+    "ndarray-scratch": "^1.1.1",
+    "ndarray-show": "^2.0.0"
   },
   "dependencies": {
     "ndarray-blas-level1": "^1.0.1"

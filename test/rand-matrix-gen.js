@@ -14,7 +14,7 @@ module.exports = function (seed, arrayType) {
   var exports = {};
 
   function getRandom () {
-    return prng.random()
+    return prng.random();
   }
 
   exports.getSeed = function () {
@@ -92,7 +92,7 @@ module.exports = function (seed, arrayType) {
       band1 = band(A, i);
       band2 = band(A, -i);
       fill(band1, getRandom);
-      ops.assign(band2, band1)
+      ops.assign(band2, band1);
     }
     return A;
   };
@@ -104,6 +104,7 @@ module.exports = function (seed, arrayType) {
     var i;
     var numElems = m * n;
     var A = M || ndarray(new NUMBER_ARRAY(numElems), [m, n]);
+    ops.assigns(A, 0);
     var numLower = Math.min(kl, m);
     var numUpper = Math.min(ku, n);
     for (i = numLower; i >= -numUpper; i--) {
@@ -119,11 +120,9 @@ module.exports = function (seed, arrayType) {
     var A = M || ndarray(new NUMBER_ARRAY(numElems), [m, n]);
     ops.assigns(A, 0);
     var i = 0;
-    var j = 0;
-    var band1;
     if (lower) {
       for (i = 0; i < m; ++i) {
-        fill(band(A, i), getRandom)
+        fill(band(A, i), getRandom);
       }
     } else {
       for (i = 0; i < n; ++i) {
