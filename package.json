@@ -31,7 +31,8 @@
     "ndarray-ops": "^1.2.2",
     "ndarray-scratch": "^1.1.1",
     "ndarray-show": "^2.0.0",
-    "ndarray-tests": "^1.3.0"
+    "ndarray-tests": "^1.3.0",
+    "semistandard": "^7.0.5"
   },
   "dependencies": {
     "ndarray-blas-level1": "^1.0.1"
