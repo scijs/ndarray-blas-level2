@@ -7,7 +7,7 @@ var pool = require('ndarray-scratch');
 var ops = require('ndarray-ops');
 var blas2 = require('../index.js');
 var blas1 = require('ndarray-blas-level1');
-var randMatGen = require('./rand-matrix-gen.js');
+var RandMatGen = require('./rand-matrix-gen.js');
 
 var NUM_TESTS = 2000;
 var TEST_TOLERANCE = 1e-8;
@@ -28,7 +28,7 @@ var naiveGEMV = function (alpha, A, x, beta, y) {
   for (var i = 0; i < m; ++i) {
     var d = 0;
     for (var j = 0; j < n; ++j) {
-      d += A.get(i,j) * x.get(j);
+      d += A.get(i, j) * x.get(j);
     }
     y.set(i, alpha * d + beta * y.get(i));
   }
@@ -40,22 +40,18 @@ describe('BLAS Level 2', function () {
   var n = 15;
   var alpha = 0;
   var beta = 0;
-  var seed = undefined;
-  var matGen = new randMatGen(seed, Float64Array);
+  var seed;
+  var matGen = new RandMatGen(seed, Float64Array);
   var A = ndarray(new Float64Array(m * n), [m, n]);
-  var B = ndarray(new Float64Array(n * n), [n, n])
+  var B = ndarray(new Float64Array(n * n), [n, n]);
   var x = ndarray(new Float64Array(n), [n]);
   var x0 = ndarray(new Float64Array(n), [n]);
   var xn = ndarray(new Float64Array(n), [n]);
   var y = ndarray(new Float64Array(m), [m]);
   var y0 = ndarray(new Float64Array(m), [m]);
 
-  // beforeEach(function () {
-    
-  // });
-
   it('gemv', function () {
-    for(var t = 0; t < NUM_TESTS; ++t) {
+    for (var t = 0; t < NUM_TESTS; ++t) {
       alpha = Math.random();
       beta = Math.random();
       seed = matGen.setRandomSeed(36);
@@ -69,7 +65,7 @@ describe('BLAS Level 2', function () {
   });
 
   it('trmv', function () {
-    for(var t = 0; t < NUM_TESTS; ++t) {
+    for (var t = 0; t < NUM_TESTS; ++t) {
       seed = matGen.setRandomSeed(36);
       matGen.makeTriangularMatrix(n, n, false, B);
       matGen.makeGeneralMatrix(1, n, xn);
@@ -82,7 +78,7 @@ describe('BLAS Level 2', function () {
   });
 
   it('trmv lower', function () {
-    for(var t = 0; t < NUM_TESTS; ++t) {
+    for (var t = 0; t < NUM_TESTS; ++t) {
       seed = matGen.setRandomSeed(36);
       matGen.makeTriangularMatrix(n, n, true, B);
       matGen.makeGeneralMatrix(1, n, xn);
@@ -95,11 +91,11 @@ describe('BLAS Level 2', function () {
   });
 
   it('trsv', function () {
-    for(var t = 0; t < NUM_TESTS; ++t) {
+    for (var t = 0; t < NUM_TESTS; ++t) {
       seed = matGen.setRandomSeed(36);
       matGen.makeTriangularMatrix(n, n, false, B);
       matGen.makeGeneralMatrix(1, n, x);
-      
+
       assert(blas2.gemv(1.0, B, x, 0.0, x0));
       assert(blas2.trsv(B, x0, false)); // value of x
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
@@ -107,11 +103,11 @@ describe('BLAS Level 2', function () {
   });
 
   it('trsv lower', function () {
-    for(var t = 0; t < NUM_TESTS; ++t) {
+    for (var t = 0; t < NUM_TESTS; ++t) {
       seed = matGen.setRandomSeed(36);
       matGen.makeTriangularMatrix(n, n, true, B);
       matGen.makeGeneralMatrix(1, n, x);
-      
+
       assert(blas2.gemv(1.0, B, x, 0.0, x0));
       assert(blas2.trsv(B, x0, true)); // value of x
       assert.ndCloseTo(x, x0, TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
