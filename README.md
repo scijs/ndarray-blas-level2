@@ -4,8 +4,6 @@
 
 BLAS Level 2 operations for [ndarrays](https://github.com/scijs/ndarray)
 
-**Warning: This is more complicated than I initially appreciated, so this package will soon get broken up into separate modules for each blas function.**
-
 ## Usage
 
 This library implements the basic matrix-vector operations of the Level 2 Basic Linear Algebra Subprograms (BLAS).
@@ -28,4 +26,4 @@ Calculates `y <- alpha*A*x + beta*y` for banded matrices. `kl` is the number of 
 Calculates `y <- alpha*A*x + beta*y` for symmetric matrices. If `fromLower = true`, the function uses the lower triangular part of the matrix; for `false` it uses the upper triangular part. `alpha` defaults to 1.0 and `beta` defaults to 0.0 if not specified.
 
 ## Credits
-(c) 2015 Ricky Reusser. MIT License
+&copy; 2016 Scijs Authors. MIT License.
