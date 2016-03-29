@@ -8,7 +8,7 @@ var ops = require('ndarray-ops');
 var blas2 = require('../index.js');
 var blas1 = require('ndarray-blas-level1');
 var RandMatGen = require('./rand-matrix-gen.js');
-var show = require('ndarray-show');
+// var show = require('ndarray-show');
 
 var NUM_TESTS = 2000;
 var TEST_TOLERANCE = 1e-8;
