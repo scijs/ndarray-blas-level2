@@ -4,7 +4,6 @@ var chai = require('chai');
 var assert = chai.assert;
 var blas1 = require('ndarray-blas-level1');
 var RandMatGen = require('./util/rand-matrix-gen.js');
-var naiveGEMV = require('./util/naive-gemv');
 var ndarray = require('ndarray');
 var assertCloseTo = require('./util/close-to');
 var constants = require('./util/constants');
@@ -13,18 +12,12 @@ var gemv = require('../gemv');
 var trmv = require('../trmv');
 
 describe('TRMV (triangular matrix vector product)', function () {
-  var m = 10;
   var n = 15;
-  var alpha = 0;
-  var beta = 0;
   var seed;
   var matGen = new RandMatGen(seed, Float64Array);
-  var A = ndarray(new Float64Array(m * n), [m, n]);
   var x = ndarray(new Float64Array(n), [n]);
   var x0 = ndarray(new Float64Array(n), [n]);
   var xn = ndarray(new Float64Array(n), [n]);
-  var y = ndarray(new Float64Array(m), [m]);
-  var y0 = ndarray(new Float64Array(m), [m]);
   var B = ndarray(new Float64Array(n * n), [n, n]);
 
   it('upper-triangular TRMV', function () {

@@ -10,7 +10,7 @@
     "url": "git://github.com/scijs/ndarray-blas-level2.git"
   },
   "scripts": {
-    "test": "semistandard && mocha test/test.js",
+    "test": "semistandard && mocha test/*.js",
     "lint": "semistandard"
   },
   "keywords": [
