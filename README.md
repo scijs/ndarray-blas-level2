@@ -24,5 +24,8 @@ Calculate `x <- A^-1 x` for the upper triangular matrix A. Data below the diagon
 ### `gbmv(A, kl, ku, x, y, alpha, beta)`
 Calculates `y <- alpha*A*x + beta*y` for banded matrices. `kl` is the number of subdiagonals and `ku` are the number of super diagonals. `alpha` defaults to 1.0 and `beta` defaults to 0.0 if not specified.
 
+### `symv(A, x, y, fromLower, alpha, beta)`
+Calculates `y <- alpha*A*x + beta*y` for symmetric matrices. If `fromLower = true`, the function uses the lower triangular part of the matrix; for `false` it uses the upper triangular part. `alpha` defaults to 1.0 and `beta` defaults to 0.0 if not specified.
+
 ## Credits
 (c) 2015 Ricky Reusser. MIT License
