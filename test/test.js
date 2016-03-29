@@ -23,6 +23,10 @@ describe('BLAS Level 2', function () {
   var x0;
   var y;
   // var y0;
+  var B;
+  var z;
+  var w;
+  var w0;
   beforeEach(function () {
     var Adata = [1, 2, 5, 3];
     var xdata = [-4, 7];
@@ -33,6 +37,18 @@ describe('BLAS Level 2', function () {
     x0 = ndarray(new Float64Array(xdata));
     y = ndarray(new Float64Array(ydata));
     // y0 = ndarray(new Float64Array(ydata));
+
+    var Bdata = [85.04423347767442, 9.361860854551196, 0, 0, 0, 0, 0, 0,
+                  82.14579129125923, 50.819494598545134, 45.74480822775513, 0, 0, 0, 0, 0,
+                  0.19750702194869518, 9.582619182765484, 1.4352485537528992, 12.11472856812179, 0, 0, 0, 0,
+                  58.657241822220385, 30.14892488718033, 16.522647975943983, 18.874867935664952, 81.8313357187435, 0, 0, 0,
+                  0, 81.81838407181203, 76.312301075086, 76.66437732987106, 88.07732549030334, 48.417096375487745, 0, 0,
+                  0, 0, 32.64176605734974, 73.48592570051551, 96.89196601975709, 24.069529958069324, 43.76116660423577, 0];
+    var zdata = [45.638499688357115, 46.46283083129674, 3.4731490770354867, 73.26457547023892, 45.81439339090139, 61.162385856732726, 22.422668361105025, 20.822709542699158];
+    B = ndarray(new Float64Array(Bdata), [6, 8]);
+    z = ndarray(new Float64Array(zdata));
+    w = ndarray(new Float64Array([0, 0, 0, 0, 0, 0]));
+    w0 = ndarray(new Float64Array([0, 0, 0, 0, 0, 0]));
   });
 
   it('gemv', function () {
@@ -64,5 +80,11 @@ describe('BLAS Level 2', function () {
     assert(blas2.trsv(A, x, true));
     assert.ndCloseTo(x, ndarray([-4, 9]), 1e-8);
     assert.ndCloseTo(A0, A, 1e-8);
+  });
+
+  it('gbmv', function () {
+    blas2.gbmv(B, 3, 1, z, w);
+    blas2.gemv(1.0, B, z, 0.0, w0);
+    assert.ndCloseTo(w, w0, 1e-8);
   });
 });
