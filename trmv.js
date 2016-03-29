@@ -2,8 +2,10 @@
 
 var blas1 = require('ndarray-blas-level1');
 
+module.exports = trmv;
+
 // Compute the product of an upper triangular matrix with a vector
-exports.trmv = function (A, x, isLower) {
+function trmv (A, x, isLower) {
   var dot = blas1.dot;
   var n = A.shape[1];
   var i = 0;
@@ -17,4 +19,4 @@ exports.trmv = function (A, x, isLower) {
     }
   }
   return true;
-};
+}

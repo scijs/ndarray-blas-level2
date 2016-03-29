@@ -2,7 +2,9 @@
 
 var blas1 = require('ndarray-blas-level1');
 
-exports.symv = function (A, x, y, fromLower, alpha, beta) {
+module.exports = symv;
+
+function symv (A, x, y, fromLower, alpha, beta) {
   var n = A.shape[0];
 
   var lower = fromLower || true;
@@ -72,4 +74,4 @@ exports.symv = function (A, x, y, fromLower, alpha, beta) {
   }
 
   return true;
-};
+}

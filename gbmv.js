@@ -1,6 +1,8 @@
 'use strict';
 
-exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
+module.exports = gbmv;
+
+function gbmv (A, kl, ku, x, y, alpha, beta) {
   var r = 0;
   var i = 0;
   var c = 0;
@@ -55,4 +57,4 @@ exports.gbmv = function (A, kl, ku, x, y, alpha, beta) {
     }
   }
   return true;
-};
+}

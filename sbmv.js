@@ -1,5 +1,7 @@
 'use strict';
 
-exports.sbmv = function () {
+module.exports = sbmv;
+
+function sbmv () {
   console.error('SBMV (symmetric banded matrix vector multiply) not yet implemented');
-};
+}

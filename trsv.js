@@ -2,8 +2,10 @@
 
 var blas1 = require('ndarray-blas-level1');
 
+module.exports = trsv;
+
 // Solve Ax=b where A is upper triangular
-exports.trsv = function (A, x, isLower) {
+function trsv (A, x, isLower) {
   var dot = blas1.dot;
   var n = A.shape[1];
   var i = 0;
@@ -19,4 +21,4 @@ exports.trsv = function (A, x, isLower) {
     }
   }
   return true;
-};
+}
