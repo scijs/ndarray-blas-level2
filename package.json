@@ -1,6 +1,6 @@
 {
   "name": "ndarray-blas-level2",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "BLAS Level 2 operations for ndarrays",
   "main": "index.js",
   "author": "Ricky Reusser",
@@ -10,7 +10,7 @@
     "url": "git://github.com/scijs/ndarray-blas-level2.git"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "semistandard && mocha test/*.js",
     "lint": "semistandard"
   },
   "keywords": [
@@ -20,12 +20,19 @@
     "linearalgebra"
   ],
   "devDependencies": {
+    "almost-equal": "^1.1.0",
     "chai": "*",
     "jshint": "*",
+    "mersennetwister": "^0.2.3",
     "mocha": "*",
     "ndarray": "^1.0.16",
+    "ndarray-band": "^1.0.14",
+    "ndarray-fill": "^1.0.1",
     "ndarray-ops": "^1.2.2",
-    "ndarray-scratch": "^1.1.1"
+    "ndarray-scratch": "^1.1.1",
+    "ndarray-show": "^2.0.0",
+    "ndarray-tests": "^1.3.0",
+    "semistandard": "^7.0.5"
   },
   "dependencies": {
     "ndarray-blas-level1": "^1.0.1"
@@ -36,6 +43,10 @@
     ]
   },
   "semistandard": {
-    "globals": [ "describe", "it", "beforeEach" ]
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach"
+    ]
   }
 }

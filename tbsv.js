@@ -1,5 +1,7 @@
 'use strict';
 
-exports.tbsv = function () {
+module.exporst = tbsv;
+
+function tbsv () {
   console.error('TBSV (triangular banded matrix solver) not yet implemented');
-};
+}
