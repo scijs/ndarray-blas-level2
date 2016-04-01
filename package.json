@@ -1,6 +1,6 @@
 {
   "name": "ndarray-blas-level2",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "BLAS Level 2 operations for ndarrays",
   "main": "index.js",
   "author": "Ricky Reusser",
