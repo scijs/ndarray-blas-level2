@@ -8,7 +8,8 @@ var ndarray = require('ndarray');
 var assertCloseTo = require('./util/close-to');
 var constants = require('./util/constants');
 
-var gemv = require('../gemv');
+var gemvOpt = require('../gemv.optimized');
+var gemvGen = require('../gemv.generic');
 
 describe('GEMV (general matrix vector product)', function () {
   var m = 10;
@@ -22,15 +23,32 @@ describe('GEMV (general matrix vector product)', function () {
   var y = ndarray(new Float64Array(m), [m]);
   var y0 = ndarray(new Float64Array(m), [m]);
 
-  it('gemv', function () {
+  beforeEach(function () {
+    seed = matGen.setRandomSeed(36);
+  });
+
+  it('gemv (generic)', function () {
     for (var t = 0; t < constants.NUM_TESTS; ++t) {
-      alpha = Math.random();
-      beta = Math.random();
+      alpha = matGen.random();
+      beta = matGen.random();
+      matGen.makeGeneralMatrix(m, n, A);
+      matGen.makeGeneralMatrix(1, n, x);
+
+      assert(gemvGen(alpha, A, x, beta, y));
+      assert(naiveGEMV(alpha, A, x, beta, y0));
+      assertCloseTo(y0, y, constants.TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
+    }
+  });
+
+  it('gemv (optimized)', function () {
+    for (var t = 0; t < constants.NUM_TESTS; ++t) {
+      alpha = matGen.random();
+      beta = matGen.random();
       seed = matGen.setRandomSeed(36);
       matGen.makeGeneralMatrix(m, n, A);
       matGen.makeGeneralMatrix(1, n, x);
 
-      assert(gemv(alpha, A, x, beta, y));
+      assert(gemvOpt(alpha, A, x, beta, y));
       assert(naiveGEMV(alpha, A, x, beta, y0));
       assertCloseTo(y0, y, constants.TEST_TOLERANCE, 'Failure seed value: "' + seed + '".');
     }
