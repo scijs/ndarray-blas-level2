@@ -11,6 +11,7 @@
   },
   "scripts": {
     "test": "semistandard && mocha test/*.js",
+    "benchmark": "for i in benchmark/*.js; do node $i; done",
     "lint": "semistandard"
   },
   "keywords": [
@@ -21,6 +22,7 @@
   ],
   "devDependencies": {
     "almost-equal": "^1.1.0",
+    "benchmark": "^2.1.1",
     "chai": "*",
     "jshint": "*",
     "mersennetwister": "^0.2.3",

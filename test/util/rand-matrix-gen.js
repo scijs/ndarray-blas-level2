@@ -17,6 +17,8 @@ module.exports = function (seed, arrayType) {
     return prng.random();
   }
 
+  exports.random = getRandom;
+
   exports.getSeed = function () {
     if (!prng) {
       throw new Error('Number generator not initialized.');
